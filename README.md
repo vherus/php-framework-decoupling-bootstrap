@@ -43,7 +43,7 @@ This will include renaming things such as:
 - PHP namespaces
 
 ### Delete what you don't need
-You should **delete what don't need**. For example if you never intend to have a GUI, delete the Http/App namespace entirely.
+For example, if you never intend to have a GUI, delete the Http/App namespace entirely.
 
 Deleting unused code helps ensure any applications built from this do not have redundant/dead code.
 
