@@ -4,7 +4,6 @@
 A custom bootstrap framework for HTTP, API and Console based PHP applications.
 
 ## What's in the box
-Features include:
 
 - *Console*: a starting point for building CLI applications
 - *Http/App*: a starting point for building GUIs
