@@ -1,0 +1,17 @@
+#!/bin/bash
+
+bin/docker-dev up $@
+
+if [[ $@ == *"-d"* ]]
+then
+  # In daemon mode, provide some extra output
+
+  PROXY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(echo ${PWD##*/} | sed s/[-_]//g | tr [:upper:] [:lower:])_nginx-proxy_1)
+
+  echo "Running daemon mode:"
+  echo "    proxy:    https://"$(bin/docker-dev port nginx-proxy 443)
+  echo "              https://$PROXY_IP"
+fi
+
+
+

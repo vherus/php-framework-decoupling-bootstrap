@@ -1,0 +1,3 @@
+#!/bin/bash
+
+src/vendor/bin/phpcbf --standard=psr2 src/app

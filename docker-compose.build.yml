@@ -1,0 +1,54 @@
+version: '2'
+services:
+
+  mysql:
+    image: 'mysql:5.6'
+    volumes:
+     - .:/opt
+    environment:
+     - MYSQL_ROOT_PASSWORD=password
+     - MYSQL_DATABASE=app
+
+  nginx-proxy:
+    build:
+      dockerfile: ./docker/nginx-proxy/Dockerfile
+      context: ./
+    links:
+      - web
+
+  web:
+    build:
+      dockerfile: ./docker/web/Dockerfile
+      context: ./
+    links:
+      - mysql
+    environment:
+      - DB_DSN=mysql:host=mysql;dbname=app
+      - DB_USER=root
+      - DB_PASS=password
+
+  migrate:
+    build:
+      dockerfile: ./docker/web/Dockerfile
+      context: ./
+    links:
+      - mysql
+    environment:
+      - DB_DSN=mysql:host=mysql;dbname=app
+      - DB_USER=root
+      - DB_PASS=password
+    command: /opt/bin/migrate
+    restart: on-failure
+
+  builder:
+    build:
+      dockerfile: ./docker/web/Dockerfile
+      context: ./
+    links:
+      - mysql
+    volumes:
+     - ./:/opt
+    environment:
+      - DB_DSN=mysql:host=mysql;dbname=app
+      - DB_USER=root
+      - DB_PASS=password

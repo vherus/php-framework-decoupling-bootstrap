@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+docker run --rm --interactive --tty \
+    --volume $PWD:/app \
+    --volume $SSH_AUTH_SOCK:/ssh-auth.sock \
+    --volume /etc/passwd:/etc/passwd:ro \
+    --volume /etc/group:/etc/group:ro \
+    --user $(id -u):$(id -g) \
+    --env SSH_AUTH_SOCK=/ssh-auth.sock \
+    composer install --ignore-platform-reqs -n
+
+bin/docker-dev-up --build -d
+docker-compose -f docker-compose.build.yml run builder docker/wait-for-it.sh mysql:3306 -t 90
+bin/docker-dev-migrate
+bin/docker-dev-test

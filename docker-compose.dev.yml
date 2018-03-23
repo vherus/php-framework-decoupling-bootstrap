@@ -1,0 +1,16 @@
+version: '2'
+services:
+# Extends docker-compose.build.yml
+
+  nginx-proxy:
+    ports:
+      - "80"
+      - "443"
+
+  web:
+    volumes:
+      - ./:/opt
+
+  migrate:
+    volumes:
+      - ./:/opt
