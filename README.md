@@ -45,10 +45,6 @@ This will include renaming things such as:
 ### Delete what you don't need
 For example, if you never intend to have a GUI, delete the Http/App namespace entirely.
 
-Deleting unused code helps ensure any applications built from this do not have redundant/dead code.
-
-You can always revert the deletion later if you do need it.
-
 ### Easy start mode
 
 Once you've completed the pre-requisite steps above, let's go!
