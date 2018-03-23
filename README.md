@@ -19,7 +19,7 @@ A custom bootstrap framework for HTTP, API and Console based PHP applications.
 ### Cloning the repository
 `git clone git@github.com:vherus/php-framework.git <YOUR_APP_NAME>`
 
-Do not delete the whole `.git` folder. Having a shared git history with the framework will make it easy to merge changes from it to your app.
+Don't delete the whole `.git` folder. Having a shared git history with the framework will make it easy to merge changes from it to your app.
 
 Delete the `origin` remote, and re-add it named `upstream`. This allows you to merge the framework branches into your app by simply doing `git merge upstream <BRANCH>`.
 
